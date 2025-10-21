@@ -531,15 +531,21 @@
 	  });
 	}
 
-    function renderDatasets() {
+      function renderDatasets() {
       const pub = document.getElementById("publicDataBody");
       const pri = document.getElementById("privateDataBody");
       pub.innerHTML = "";
       pri.innerHTML = "";
+
+      // ✅ Public datasets with hyperlinks
       DATA.datasets.public.forEach(d => {
         const tr = document.createElement("tr");
+        const nameHTML = d.url
+          ? `<a href="${d.url}" target="_blank" class="text-sky-400 hover:text-fuchsia-300 hover:underline transition-colors">${d.name}</a>`
+          : d.name;
+
         tr.innerHTML = `
-          <td class="py-2 pr-4">${d.name}</td>
+          <td class="py-2 pr-4">${nameHTML}</td>
           <td class="py-2 pr-4">${d.stain}</td>
           <td class="py-2 pr-4">${d.disease}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${d.patients}</td>
@@ -547,6 +553,7 @@
         `;
         pub.appendChild(tr);
       });
+      // ✅ Private datasets unchanged
       DATA.datasets.private.forEach(d => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
