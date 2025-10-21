@@ -187,7 +187,6 @@
               <th class="text-left py-2 pr-4">Disease</th>
               <th class="text-right py-2 pr-2">Patients</th>
               <th class="text-right py-2 pr-2">Data Volume</th>
-              <th class="text-left py-2 pr-2">Format</th>
             </tr>
           </thead>
           <tbody id="publicDataBody" class="divide-y divide-slate-800/50"></tbody>
@@ -204,7 +203,6 @@
               <th class="text-left py-2 pr-4">Disease</th>
               <th class="text-right py-2 pr-2">Patients</th>
               <th class="text-right py-2 pr-2">Data Volume</th>
-              <th class="text-left py-2 pr-2">Format</th>
             </tr>
           </thead>
           <tbody id="privateDataBody" class="divide-y divide-slate-800/50"></tbody>
@@ -395,47 +393,47 @@
       // Datasets
       datasets: {
         public: [
-          { name: "HE_Ki67", stain: "HE, Ki-67", disease: "Prostate Cancer", patients: "77", volume: "154 WSIs", format: ".png" },
-          { name: "PKG_NADT_Prostate_v1", stain: "HE, p53, PTEN, AR, PSA, GR, Ki67, SYP, PIN4", disease: "Prostate Cancer", patients: "39", volume: "1,226 WSIs", format: ".svs" },
-          { name: "IHC4BC", stain: "HE, ER, PR, Ki-67", disease: "Breast Cancer", patients: "240", volume: "92,413 Patches", format: ".png" },
-          { name: "BCI_dataset", stain: "HE, HER2", disease: "Breast Cancer", patients: "-", volume: "9,746 Patches", format: ".png" },
-          { name: "HER2_warwick", stain: "HE, HER2", disease: "Breast Cancer", patients: "-", volume: "200 WSIs", format: ".ndpi" },
-          { name: "HANCOCK", stain: "HE, CD3, CD8, CD56, CD68, CD163, MHC1, PDL1", disease: "Head and Neck Cancer", patients: "727", volume: "10,330 WSIs", format: ".svs" },
-          { name: "Breast_IMPRESS_DEID", stain: "HE, PD-L1, CD8, CD163", disease: "Breast Cancer", patients: "62", volume: "117 WSIs", format: ".svs" },
-          { name: "MIHIC", stain: "CD3, CD20, CD34, CD38, CD68, CDK4, cyclin-D1, D2-40, FAP, Ki-67, P53, SMA", disease: "Lung Cancer", patients: "-", volume: "309,698 Patches", format: ".png" },
-          { name: "HNSCC_mIF_mIHC", stain: "CD3, CD8, FoxP3, PanCK", disease: "Head and Neck Cancer", patients: "-", volume: "1,336 Patches", format: ".png" },
-          { name: "DLBCL_Morph", stain: "HE, BCL2, BCL6, MUM1, MYC", disease: "Lymphoma", patients: "170", volume: "1,009 WSIs", format: ".png" },
-          { name: "InUIT", stain: "CD8, CD20, Ki-67", disease: "Ovarian Cancer", patients: "170", volume: "1,009 WSIs", format: ".tif" },
-          { name: "Histai", stain: "CD20, CD10, CK7, CD34, S100, TTF1, P63, SYN, PAX8, GATA3, PD-L1, P40", disease: "Breast, Skin, Thorax, Hematologic, Gastrointestinal, Colorectal", patients: "204", volume: "1481 WSIs", format: ".tif" },
+          { name: "HE_Ki67", stain: "HE, Ki-67", disease: "Prostate Cancer", patients: "77", volume: "154 WSIs", url: "https://zenodo.org/records/11218961"},
+          { name: "PKG_NADT_Prostate_v1", stain: "HE, p53, PTEN, AR, PSA, GR, Ki67, SYP, PIN4", disease: "Prostate Cancer", patients: "39", volume: "1,226 WSIs", url: "https://www.cancerimagingarchive.net/collection/nadt-prostate/"},
+          { name: "IHC4BC", stain: "HE, ER, PR, Ki-67", disease: "Breast Cancer", patients: "240", volume: "92,413 Patches", url: "https://ihc4bc.github.io/"},
+          { name: "BCI_dataset", stain: "HE, HER2", disease: "Breast Cancer", patients: "-", volume: "9,746 Patches", url: "https://bupt-ai-cz.github.io/BCI/"},
+          { name: "HER2_warwick", stain: "HE, HER2", disease: "Breast Cancer", patients: "-", volume: "200 WSIs", url: "https://warwick.ac.uk/fac/cross_fac/tia/data/her2contest"},
+          { name: "HANCOCK", stain: "HE, CD3, CD8, CD56, CD68, CD163, MHC1, PDL1", disease: "Head and Neck Cancer", patients: "727", volume: "10,330 WSIs", url: "https://github.com/ankilab/HANCOCK_MultimodalDataset?tab=readme-ov-file\#dataset"},
+          { name: "Breast_IMPRESS_DEID", stain: "HE, PD-L1, CD8, CD163", disease: "Breast Cancer", patients: "62", volume: "117 WSIs", url: "https://drive.google.com/drive/folders/1fNf-F_aplm6ACJTWO1vGqbb-DdaP4K_r"},
+          { name: "MIHIC", stain: "CD3, CD20, CD34, CD38, CD68, CDK4, cyclin-D1, D2-40, FAP, Ki-67, P53, SMA", disease: "Lung Cancer", patients: "-", volume: "309,698 Patches", url: "https://zenodo.org/records/10065510"},
+          { name: "HNSCC_mIF_mIHC", stain: "CD3, CD8, FoxP3, PanCK", disease: "Head and Neck Cancer", patients: "-", volume: "1,336 Patches", url: "https://www.cancerimagingarchive.net/collection/hnscc-mif-mihc-comparison/"},
+          { name: "DLBCL_Morph", stain: "HE, BCL2, BCL6, MUM1, MYC", disease: "Lymphoma", patients: "170", volume: "1,009 WSIs", url: "https://www.nature.com/articles/s41597-021-00915-w"},
+          { name: "InUIT", stain: "CD8, CD20, Ki-67", disease: "Ovarian Cancer", patients: "170", volume: "1,009 WSIs", url: "https://app.globus.org/file-manager?origin_id=70de1e85-bafd-465a-9822-1934475919d0&origin_path=%2FInUIT%20dataset%2F&two_pane=false"},
+          { name: "Histai", stain: "CD20, CD10, CK7, CD34, S100, TTF1, P63, SYN, PAX8, GATA3, PD-L1, P40", disease: "Breast, Skin, Thorax, Hematologic, Gastrointestinal, Colorectal", patients: "204", volume: "1481 WSIs", url: "https://huggingface.co/histai"},
         ],
         private: [
-          { name: "breast_malignant_benign", stain: "HE, CK5/6, E-cadherin, P63, Ki-67", disease: "Breast Cancer", patients: "145", volume: "564 WSIs", format: ".sdpc" },
-          { name: "breast_subtype", stain: "HE, CK5/6, E-cadherin, P63", disease: "Breast Cancer", patients: "188", volume: "573 WSIs", format: ".sdpc" },
-          { name: "brain_subtype", stain: "HE, EMA, GFAP", disease: "Brain Cancer", patients: "188", volume: "521 WSIs", format: ".sdpc" },
-          { name: "cervical_CIN_grading", stain: "HE, P16, Ki67", disease: "Cervical Cancer", patients: "175", volume: "488 WSIs", format: ".sdpc" },
-          { name: "Breast_RCB_X", stain: "HE, ER, GATA3, HER2, Ki67, PR", disease: "Cervical Cancer", patients: "87", volume: "440 WSIs", format: ".sdpc" },
-          { name: "CK56_pancancer", stain: "CK5/6", disease: "Pancancer", patients: "252", volume: "252 WSIs", format: ".sdpc" },
-          { name: "P63", stain: "P63", disease: "Pancancer", patients: "257", volume: "257 WSIs", format: ".sdpc" },
-          { name: "SYN_pancancer", stain: "SYN", disease: "Pancancer", patients: "275", volume: "275 WSIs", format: ".sdpc" },
-          { name: "GATA3_pancancer", stain: "GATA3", disease: "Pancancer", patients: "285", volume: "285 WSIs", format: ".sdpc" },
-          { name: "P16_pancancer", stain: "P16", disease: "Pancancer", patients: "297", volume: "297 WSIs", format: ".sdpc" },
-          { name: "CD34_pancancer", stain: "CD34", disease: "Pancancer", patients: "464", volume: "464 WSIs", format: ".sdpc" },
-          { name: "PAX8_pancancer", stain: "PAX8", disease: "Pancancer", patients: "314", volume: "314 WSIs", format: ".sdpc" },
-          { name: "S100_pancancer", stain: "S100", disease: "Pancancer", patients: "262", volume: "262 WSIs", format: ".sdpc" },
-          { name: "CK7_pancancer", stain: "CK7", disease: "Pancancer", patients: "192", volume: "192 WSIs", format: ".sdpc" },
-          { name: "TTF1_pancancer", stain: "TTF1", disease: "Pancancer", patients: "246", volume: "246 WSIs", format: ".sdpc" },
-          { name: "D2_40_pancancer", stain: "D2_40", disease: "Pancancer", patients: "228", volume: "228 WSIs", format: ".sdpc" },
-          { name: "Ki_67_pancancer", stain: "Ki67", disease: "Pancancer", patients: "568", volume: "568 WSIs", format: ".sdpc" },
-          { name: "P53_pancancer", stain: "P53", disease: "Pancancer", patients: "226", volume: "226 WSIs", format: ".sdpc" },
-          { name: "PSA_pancancer", stain: "PSA", disease: "Pancancer", patients: "124", volume: "124 WSIs", format: ".sdpc" },
-          { name: "AR_breast", stain: "AR", disease: "Breast Cancer", patients: "303", volume: "303 WSIs", format: ".sdpc" },
-          { name: "ER", stain: "ER", disease: "Pancancer", patients: "224", volume: "224 WSIs", format: ".sdpc" },
-          { name: "PR", stain: "PR", disease: "Pancancer", patients: "222", volume: "222 WSIs", format: ".sdpc" },
-          { name: "PD_L1_Pancancer", stain: "PD_L1", disease: "Pancancer", patients: "163", volume: "163 WSIs", format: ".sdpc" },
-          { name: "HER2_breast", stain: "HER2", disease: "Breast Cancer", patients: "331", volume: "331 WSIs", format: ".sdpc" },
-          { name: "P40_pancancer", stain: "HER2", disease: "Pancancer", patients: "288", volume: "288 WSIs", format: ".sdpc" },
-          { name: "NapsinA_pancancer", stain: "NapsinA", disease: "Pancancer", patients: "238", volume: "238 WSIs", format: ".sdpc" },
-          { name: "CDX2_pancancer", stain: "CDX2", disease: "Pancancer", patients: "165", volume: "165 WSIs", format: ".sdpc" },
+          { name: "breast_malignant_benign", stain: "HE, CK5/6, E-cadherin, P63, Ki-67", disease: "Breast Cancer", patients: "145", volume: "564 WSIs"},
+          { name: "breast_subtype", stain: "HE, CK5/6, E-cadherin, P63", disease: "Breast Cancer", patients: "188", volume: "573 WSIs"},
+          { name: "brain_subtype", stain: "HE, EMA, GFAP", disease: "Brain Cancer", patients: "188", volume: "521 WSIs"},
+          { name: "cervical_CIN_grading", stain: "HE, P16, Ki67", disease: "Cervical Cancer", patients: "175", volume: "488 WSIs"},
+          { name: "Breast_RCB_X", stain: "HE, ER, GATA3, HER2, Ki67, PR", disease: "Cervical Cancer", patients: "87", volume: "440 WSIs"},
+          { name: "CK56_pancancer", stain: "CK5/6", disease: "Pancancer", patients: "252", volume: "252 WSIs"},
+          { name: "P63", stain: "P63", disease: "Pancancer", patients: "257", volume: "257 WSIs"},
+          { name: "SYN_pancancer", stain: "SYN", disease: "Pancancer", patients: "275", volume: "275 WSIs"},
+          { name: "GATA3_pancancer", stain: "GATA3", disease: "Pancancer", patients: "285", volume: "285 WSIs"},
+          { name: "P16_pancancer", stain: "P16", disease: "Pancancer", patients: "297", volume: "297 WSIs"},
+          { name: "CD34_pancancer", stain: "CD34", disease: "Pancancer", patients: "464", volume: "464 WSIs"},
+          { name: "PAX8_pancancer", stain: "PAX8", disease: "Pancancer", patients: "314", volume: "314 WSIs"},
+          { name: "S100_pancancer", stain: "S100", disease: "Pancancer", patients: "262", volume: "262 WSIs"},
+          { name: "CK7_pancancer", stain: "CK7", disease: "Pancancer", patients: "192", volume: "192 WSIs"},
+          { name: "TTF1_pancancer", stain: "TTF1", disease: "Pancancer", patients: "246", volume: "246 WSIs"},
+          { name: "D2_40_pancancer", stain: "D2_40", disease: "Pancancer", patients: "228", volume: "228 WSIs"},
+          { name: "Ki_67_pancancer", stain: "Ki67", disease: "Pancancer", patients: "568", volume: "568 WSIs"},
+          { name: "P53_pancancer", stain: "P53", disease: "Pancancer", patients: "226", volume: "226 WSIs"},
+          { name: "PSA_pancancer", stain: "PSA", disease: "Pancancer", patients: "124", volume: "124 WSIs"},
+          { name: "AR_breast", stain: "AR", disease: "Breast Cancer", patients: "303", volume: "303 WSIs"},
+          { name: "ER", stain: "ER", disease: "Pancancer", patients: "224", volume: "224 WSIs"},
+          { name: "PR", stain: "PR", disease: "Pancancer", patients: "222", volume: "222 WSIs"},
+          { name: "PD_L1_Pancancer", stain: "PD_L1", disease: "Pancancer", patients: "163", volume: "163 WSIs"},
+          { name: "HER2_breast", stain: "HER2", disease: "Breast Cancer", patients: "331", volume: "331 WSIs"},
+          { name: "P40_pancancer", stain: "HER2", disease: "Pancancer", patients: "288", volume: "288 WSIs"},
+          { name: "NapsinA_pancancer", stain: "NapsinA", disease: "Pancancer", patients: "238", volume: "238 WSIs"},
+          { name: "CDX2_pancancer", stain: "CDX2", disease: "Pancancer", patients: "165", volume: "165 WSIs"},
         ],
       },
     };
@@ -546,7 +544,6 @@
           <td class="py-2 pr-4">${d.disease}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${d.patients}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${d.volume}</td>
-          <td class="py-2 pr-2">${d.format}</td>
         `;
         pub.appendChild(tr);
       });
@@ -558,7 +555,6 @@
           <td class="py-2 pr-4">${d.disease}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${d.patients}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${d.volume}</td>
-          <td class="py-2 pr-2">${d.format}</td>
         `;
         pri.appendChild(tr);
       });
