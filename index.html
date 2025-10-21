@@ -590,6 +590,28 @@
       });
     }
 
+    function getModelIcon(name) {
+      const color = {
+        "Virchow2": "bg-purple-400",
+        "Virchow": "bg-violet-500",
+        "UNI": "bg-sky-400",
+        "GPFM": "bg-amber-400",
+        "Gigapath": "bg-orange-400",
+        "Conch v1.5": "bg-rose-400",
+        "Conch": "bg-pink-400",
+        "Chief": "bg-gray-400",
+        "Phikon": "bg-emerald-400",
+        "H-optimus-0": "bg-lime-400",
+        "CTransPath": "bg-blue-400",
+        "TITAN (WSI)": "bg-teal-400",
+        "MADELENE (WSI)": "bg-fuchsia-400",
+        "Chief (WSI)": "bg-neutral-400",
+        "Gigapath (WSI)": "bg-orange-300"
+      }[name] || "bg-slate-300";
+
+      return `<span class="inline-block w-2.5 h-2.5 rounded-full ${color} mr-2"></span>`;
+    }
+
     function renderRanking() {
       const cat = DATA.categories.find(c => c.id === currentCategory);
       document.getElementById("currentCategoryLabel").textContent = `— ${cat?.name || ""}`;
@@ -604,7 +626,7 @@
         OVERALL_RANKING.forEach(r => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td class="py-2 pr-4">${r.model}</td>
+            <td class="py-2 pr-4">${getModelIcon(r.model)} ${r.model}</td>
             <td class="py-2 pr-2 text-right tabular-nums">${r.avgAUC.toFixed(6)}</td>
           `;
           tbody.appendChild(tr);
@@ -665,7 +687,7 @@
         IHC_RANKING.forEach(r => {
           const tr = document.createElement("tr");
           tr.innerHTML = `
-            <td class="py-2 pr-4">${r.model}</td>
+            <td class="py-2 pr-4">${getModelIcon(r.model)} ${r.model}</td>
             <td class="py-2 pr-2 text-right tabular-nums">${r.auc.toFixed(6)}</td>
           `;
           tbody.appendChild(tr);
@@ -729,7 +751,7 @@
       THER_RANKING.forEach(r => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="py-2 pr-4">${r.model}</td>
+          <td class="py-2 pr-4">${getModelIcon(r.model)} ${r.model}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${r.auc.toFixed(6)}</td>
         `;
         tbody.appendChild(tr);
@@ -795,11 +817,12 @@
       TISSUE_RANKING.forEach(r => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="py-2 pr-4">${r.model}</td>
+          <td class="py-2 pr-4">${getModelIcon(r.model)} ${r.model}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${r.auc.toFixed(6)}</td>
         `;
         tbody.appendChild(tr);
       });
+
 
       // 绘制柱状图
       const chartContainer = document.querySelector("#rankChart").parentNode;
@@ -863,7 +886,7 @@
       HIST_RANKING.forEach(r => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="py-2 pr-4">${r.model}</td>
+          <td class="py-2 pr-4">${getModelIcon(r.model)} ${r.model}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${r.auc.toFixed(6)}</td>
         `;
         tbody.appendChild(tr);
@@ -931,7 +954,7 @@
       PROG_RANKING.forEach(r => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-          <td class="py-2 pr-4">${r.model}</td>
+          <td class="py-2 pr-4">${getModelIcon(r.model)} ${r.model}</td>
           <td class="py-2 pr-2 text-right tabular-nums">${r.auc.toFixed(6)}</td>
         `;
         tbody.appendChild(tr);
