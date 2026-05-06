@@ -86,7 +86,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    
    **Example**:
    ```bash
-   # Run training for HPA10M staining intensity assessment
+   python create_splits_seq.py --test_frac 0.2 --prefix splits712 --k 1 --task HPA10M_staining_intensity --seed 42
    bash train_scripts/subtype_HPA10M_staining_intensity.sh
    ```
 
@@ -100,7 +100,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    
    **Example**:
    ```bash
-   # Run training for GATA3 biomarker expression prediction
+   python create_splits_seq.py --test_frac 0.2 --prefix splits712 --k 5 --task GATA3_pancancer --seed 1024
    bash train_scripts/subtype_GATA3_pancancer.sh
    ```
 

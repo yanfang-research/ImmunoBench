@@ -1,13 +1,46 @@
-#!/bin/bash  # 确保使用 Bash（而不是sh）
+#!/bin/bash
+# Training script for GATA3 pancancer subtyping task
+# This script can be run directly without SLURM
 
-# process the csv file
-python create_splits_seq.py --test_frac 0.2 --prefix splits712 --k 5 --task GATA3_pancancer
+# ==========================================
+# Configuration Variables
+# ==========================================
+# Task configuration
+task_name=GATA3_pancancer
+modal=ALL
+current_prefix="splits712"
 
-# backbones="chief conch conch_v1_5 ctranspath gigapath GPFM phikon uni h_optimus_0 virchow virchow2 chief_wsi titan_wsi gigapath_wsi madeleine_wsi"
+# Path configuration - modify these according to your setup
+LOG_DIR="logs"
+RESULTS_BASE_DIR="results/experiments/train/splits712"
+
+# Create necessary directories
+mkdir -p "$LOG_DIR"
+
+# Determine task name with modal suffix
+if [ "$modal" == "ALL" ] || [ -z "$modal" ]; then
+    task_with_modal="${task_name}"
+else
+    task_with_modal="${task_name}_${modal}"
+fi
+
+# ==========================================
+# Data Preparation
+# ==========================================
+echo "Preparing data splits..."
+python re_create_csv.py --task_name $task_name --task_modal $modal
+python create_splits_seq.py --test_frac 0.2 --prefix $current_prefix --k 5 --task $task_with_modal --seed 1024
+
+# ==========================================
+# Model Configuration
+# ==========================================
+# Specify which backbones to train (modify as needed)
 backbones="titan_wsi"
+# backbones="chief conch conch_v1_5 ctranspath gigapath GPFM phikon uni h_optimus_0 virchow virchow2 chief_wsi titan_wsi gigapath_wsi madeleine_wsi"
 
+# Feature dimensions for each backbone
 declare -A in_dim
-# patch
+# Patch-level backbones
 in_dim["phikon"]=768
 in_dim["chief"]=768
 in_dim["conch_v1_5"]=768
@@ -19,65 +52,80 @@ in_dim["uni"]=1024
 in_dim["virchow"]=2560
 in_dim["virchow2"]=2560
 in_dim["h_optimus_0"]=1536
-# wsi
+# WSI-level backbones
 in_dim["chief_wsi"]=768
 in_dim["titan_wsi"]=768
 in_dim["gigapath_wsi"]=768
 in_dim["madeleine_wsi"]=512
-# in_dim["chief_wsi"]=768
-# in_dim["chief_wsi"]=3072
 
-declare -A gpus
-# gpus["ab_mil"]=0
-# gpus["clam_sb"]=0
-# gpus["trans_mil"]=0
-gpus["att_mil"]=0
-gpus["wsi_mil"]=0
+# Training parameters
+n_classes=2
+task=$task_name
+seed=1024
+preloading="no"
+patch_size="512"
 
-n_classes=2 # the class number of dataset
-task="GATA3_pancancer" # the name of the dataset, it is defined at `datasets/__init__.py`.
-root_log="train_scripts_lanfz/logs/train_log_"$task"_" # log file path
-results_dir="/cpfs04/user/yanfang/workspace/IHC_Benchmarks/code/Master/lanfz_results/experiments/train/splits712/"$task # path to save results
-split_dir="splits712/GATA3_pancancer_100" # which splits to use
-seed=1024       # random seed
-preloading="no"   # load all data into memory and then train the model
-patch_size="512"    # the patch size of instances
+# Set up paths
+if [ "$modal" == "ALL" ] || [ -z "$modal" ]; then
+    root_log="${LOG_DIR}/train_log_${task}_"
+    results_dir="${RESULTS_BASE_DIR}/${task}"
+else
+    root_log="${LOG_DIR}/train_log_${task}_${modal}_"
+    results_dir="${RESULTS_BASE_DIR}/${task}_${modal}"
+fi
+split_dir="$current_prefix/${task_name}_100"
+
+# ==========================================
+# GPU Configuration
+# ==========================================
+GPU_ID=${CUDA_VISIBLE_DEVICES:-0}
+echo "Using GPU: $GPU_ID"
+
+# ==========================================
+# Training Loop
+# ==========================================
+echo "Starting training for backbones: $backbones"
 
 for backbone in $backbones
 do
     if [[ $backbone == *"wsi"* ]]; then
-        model="wsi_mil"  # 如果 backbone 包含 "wsi"，就用 wsi_mil
+        model="wsi_mil"
     else
-        model="att_mil"  # 否则用 att_mil
+        model="att_mil"
     fi
-        exp=$model"/"$backbone
-        echo $exp", GPU is:"${gpus[$model]}
-        export CUDA_VISIBLE_DEVICES=${gpus[$model]}
-        # k_start and k_end, only for resuming, default is -1
-        k_start=0
-        k_end=-1
-        nohup python main.py \
-            --seed $seed \
-            --split_dir $split_dir \
-            --drop_out \
-            --task_type subtyping \
-            --early_stopping \
-            --lr 2e-4 \
-            --reg 1e-4 \
-            --k 5 \
-            --k_start $k_start \
-            --k_end $k_end \
-            --label_frac 1.0 \
-            --max_epochs 100 \
-            --exp_code $exp \
-            --patch_size $patch_size \
-            --weighted_sample \
-            --task $task \
-            --backbone $backbone \
-            --results_dir $results_dir \
-            --model_type $model \
-            --log_data \
-            --preloading $preloading \
-            --n_classes $n_classes \
-            --in_dim ${in_dim[$backbone]} > "$root_log""$model"_"$backbone.log" 2>&1 &
+    exp=$model"/"$backbone
+
+    echo "Training $exp on GPU: $GPU_ID"
+
+    k_start=0
+    k_end=-1
+
+    CUDA_VISIBLE_DEVICES=${GPU_ID} python main.py \
+        --seed $seed \
+        --split_dir $split_dir \
+        --drop_out \
+        --task_type subtyping \
+        --early_stopping \
+        --lr 2e-4 \
+        --reg 1e-4 \
+        --k 5 \
+        --k_start $k_start \
+        --k_end $k_end \
+        --label_frac 1.0 \
+        --max_epochs 100 \
+        --exp_code $exp \
+        --patch_size $patch_size \
+        --weighted_sample \
+        --task $task_with_modal \
+        --backbone $backbone \
+        --results_dir $results_dir \
+        --model_type $model \
+        --log_data \
+        --preloading $preloading \
+        --n_classes $n_classes \
+        --in_dim ${in_dim[$backbone]} > "$root_log""$model"_"$backbone.log" 2>&1
+
+    echo "Completed $exp"
 done
+
+echo "All training tasks completed!"
