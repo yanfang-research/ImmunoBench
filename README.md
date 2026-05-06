@@ -108,47 +108,41 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    
    `HANCOCK_grading`
    
-   `dataset_csv/HANCOCK_grading_subtyping.csv`
-   
-   `dataset_csv/HANCOCK_grading_subtyping_HE.csv`
-   
-   `dataset_csv/HANCOCK_grading_subtyping_IHC.csv`
-   
-   `train_scripts/subtype_HANCOCK_grading.sh`
-   
-   `train_scripts/subtype_HANCOCK_grading_HE.sh`
-   
-   `train_scripts/subtype_HANCOCK_grading_IHC.sh`
+   **Example**:
+   ```bash
+   bash train_scripts/subtype_HANCOCK_grading.sh
+   bash train_scripts/subtype_HANCOCK_grading_HE.sh
+   bash train_scripts/subtype_HANCOCK_grading_IHC.sh
+   ```
 
 ### 4. Disease Progression and Prognosis
    
    `DLBCL_Morph`
    
-   `dataset_csv/DLBCL_Morph_survival.csv`
-   
-   `train_scripts/survival_DLBCL_Morph.sh`
+   **Example**:
+   ```bash
+   bash train_scripts/survival_DLBCL_Morph.sh
+   ```
 
 ### 5. Therapeutic Response and Decision-Making
    
    `HANCOCK_Chemotherapy_Recurrence`
    
-   `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping.csv`
-   
-   `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping_HE.csv`
-   
-   `dataset_csv/HANCOCK_Chemotherapy_Recurrence_subtyping_IHC.csv`
-   
-   `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence.sh`
-   
-   `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_HE.sh`
-   
-   `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_IHC.sh`
+   **Example**:
+   ```bash
+   bash train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence.sh
+   bash train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_HE.sh
+   bash train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_IHC.sh
+   ```
 
 ### 6. Tissue and Tumor Microenvironment Classification
    
    `HNSCC_mIF_mIHC_CD8`
    
-   `train_scripts/patch_HNSCC_mIF_mIHC_CD8.sh`
+   **Example**:
+   ```bash
+   bash train_scripts/patch_HNSCC_mIF_mIHC_CD8.sh
+   ```
 
 For tasks 1 to 5, results are written under `results/experiments/train/splits712/`. For task 6, results are written under `results/experiments/train/patch/`. Logs are written under `logs/`.
 
