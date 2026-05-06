@@ -164,6 +164,3 @@ CUDA_VISIBLE_DEVICES=1 bash survival_HANCOCK_Chemotherapy_OS.sh
 ImmunoBench includes features from the following pathology foundation models:
 - `chief` `chief_wsi` `conch` `conch_v1_5` `ctranspath` `gigapath` `gigapath_wsi` `GPFM` `h_optimus_0` `madeleine_wsi` `phikon` `titan_wsi` `uni` `virchow` `virchow2`
 
-## License
-
-This project is released under the license provided with the repository.
