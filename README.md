@@ -72,7 +72,7 @@ Examples:
 
 ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step.
 
-1. Immunohistochemical Staining Assessment
+### 1. Immunohistochemical Staining Assessment
    
    `HPA10M_staining_intensity`
    
@@ -90,7 +90,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    bash train_scripts/subtype_HPA10M_staining_intensity.sh
    ```
 
-2. Immunohistochemical Biomarker Expression
+### 2. Immunohistochemical Biomarker Expression
    
    `GATA3_pancancer`
    
@@ -104,7 +104,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    bash train_scripts/subtype_GATA3_pancancer.sh
    ```
 
-3. Disease Diagnosis and Grading
+### 3. Disease Diagnosis and Grading
    
    `HANCOCK_grading`
    
@@ -120,7 +120,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    
    `train_scripts/subtype_HANCOCK_grading_IHC.sh`
 
-4. Disease Progression and Prognosis
+### 4. Disease Progression and Prognosis
    
    `DLBCL_Morph`
    
@@ -128,7 +128,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    
    `train_scripts/survival_DLBCL_Morph.sh`
 
-5. Therapeutic Response and Decision-Making
+### 5. Therapeutic Response and Decision-Making
    
    `HANCOCK_Chemotherapy_Recurrence`
    
@@ -144,7 +144,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    
    `train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_IHC.sh`
 
-6. Tissue and Tumor Microenvironment Classification
+### 6. Tissue and Tumor Microenvironment Classification
    
    `HNSCC_mIF_mIHC_CD8`
    
