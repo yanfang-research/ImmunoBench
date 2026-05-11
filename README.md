@@ -72,8 +72,8 @@ Examples:
 
 ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step.
 
-<p align="center">
-  <img src="figures/Fig1c.png" alt="ImmunoBench Task Categories" width="100%">
+<p align="left">
+  <img src="figures/Fig1c.png" alt="ImmunoBench Task Categories" width="50%">
 </p>
 
 ### 1. Immunohistochemical Staining Assessment
@@ -169,8 +169,8 @@ CUDA_VISIBLE_DEVICES=1 bash survival_HANCOCK_Chemotherapy_OS.sh
 
 The public leaderboard provides an interactive benchmark snapshot, full task explorer, and overall model rankings.
 
-<p align="center">
-  <img src="figures/Fig1d.png" alt="ImmunoBench Leaderboard Snapshot" width="100%">
+<p align="left">
+  <img src="figures/Fig1d.png" alt="ImmunoBench Leaderboard Snapshot" width="80%">
 </p>
 
 - Foundation models: `14`
