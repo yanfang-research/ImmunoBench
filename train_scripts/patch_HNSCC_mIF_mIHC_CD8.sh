@@ -3,7 +3,7 @@
 # This script can be run directly without SLURM
 
 # ==========================================
-# Configuration Variables
+# Configuration Variables...
 # ==========================================
 task_name=HNSCC_mIF_mIHC_CD8
 
