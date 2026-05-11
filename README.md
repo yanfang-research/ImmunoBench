@@ -8,11 +8,11 @@
 
 ## Overview
 
-Immunohistochemistry (IHC) provides spatially resolved protein-expression information that links tissue morphology to molecular phenotype and supports tumour classification, biomarker assessment, prognostic stratification, and therapeutic decision-making. While pathology foundation models (PFMs) have shown strong transferability in hematoxylin and eosin (H&E)-based tasks, their ability to encode IHC-derived molecular and functional signals remains insufficiently evaluated. ImmunoBench is a large-scale, multi-institutional benchmark for evaluating PFMs in IHC-centered pathology workflows, integrating data from `13,657` patients, `26,058` whole-slide images (WSIs), `9,682,431` TMA-derived IHC images, and `464,294` annotated patches across `13` institutions, `27` organs, `43` clinical stains, and `14,708` gene-encoded proteins.
-
-ImmunoBench evaluates `14` representative PFMs across `71` clinically relevant endpoints, including IHC staining assessment, biomarker prediction, disease diagnosis and grading, tissue microenvironment classification, prognosis, and treatment response prediction, under IHC-only, H&E-only, multi-stain, and external validation settings. PFMs perform strongly on local morphology and spatially coherent staining signals, but remain less reliable on sparse, heterogeneous, and outcome-related endpoints such as vascular markers, PD-L1, prognosis, and treatment response. Patch-level models generally outperform WSI-level models in local IHC recognition tasks, whereas neither paradigm achieves robust performance on prognosis or treatment-response endpoints.
-
-Beyond model comparison, ImmunoBench provides curated dataset subsets, standardized evaluation protocols, pre-extracted PFM embeddings, and a dynamic leaderboard, enabling reproducible evaluation of future models in consistent IHC-centered settings.
+> **ABSTRACT**
+>
+> *Immunohistochemistry (IHC) provides spatially resolved protein-expression information that links tissue morphology to molecular phenotype and supports tumour classification, biomarker assessment, prognostic stratification and therapeutic decision-making. While pathology foundation models (PFMs) have shown strong transferability in hematoxylin and eosin (H&E)-based tasks, their ability to encode IHC-derived molecular and functional signals remains insufficiently evaluated. Here we introduce ImmunoBench, a large-scale, multi-institutional benchmark for evaluating PFMs in IHC-centered pathology workflows. ImmunoBench integrates data from 13,657 patients, 26,058 whole-slide images (WSIs), 9,682,431 TMA-derived IHC images and 464,294 annotated patches, collected across 13 institutions, covering 27 organs, 43 clinical stains and 14,708 gene-encoded proteins. We evaluate 14 representative PFMs across 71 clinically relevant endpoints, including IHC staining assessment, biomarker prediction, disease diagnosis and grading, tissue microenvironment classification, prognosis and treatment response prediction, with IHC-only, H&E-only, multi-stain and external validation settings.*
+>
+> *Across tasks, PFMs performed strongly on local morphology and spatially coherent staining signals, including staining localization, tissue microenvironment classification, lineage markers and breast-specific biomarkers, but showed lower and more variable performance on sparse, heterogeneous and outcome-related endpoints such as vascular markers, PD-L1, prognosis and treatment response. Patch-level models generally outperformed WSI-level models in local IHC recognition tasks, whereas neither paradigm achieved robust performance on prognosis or treatment-response endpoints. IHC-aware and multimodal pretraining provided selective rather than universal benefits, and external validation revealed marker-dependent cross-center degradation. Together, ImmunoBench delineates current PFM capabilities and limitations in molecularly informative pathology and provides an open ecosystem with curated datasets, standardized protocols, pre-extracted embeddings and a dynamic leaderboard for reproducible model development.*
 
 ## Installation
 
@@ -73,7 +73,7 @@ Examples:
 ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step.
 
 <p align="left">
-  <img src="figures/Fig1c.png" alt="ImmunoBench Task Categories" width="50%">
+  <img src="figures/Fig1c.png" alt="ImmunoBench Task Categories" width="100%">
 </p>
 
 ### 1. Immunohistochemical Staining Assessment
@@ -119,7 +119,16 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    bash train_scripts/subtype_HANCOCK_grading_IHC.sh
    ```
 
-### 4. Disease Progression and Prognosis
+### 4. Tissue and Tumor Microenvironment Classification
+   
+   `HNSCC_mIF_mIHC_CD8`
+   
+   **Example**:
+   ```bash
+   bash train_scripts/patch_HNSCC_mIF_mIHC_CD8.sh
+   ```
+
+### 5. Disease Progression and Prognosis
    
    `DLBCL_Morph`
    
@@ -128,7 +137,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    bash train_scripts/survival_DLBCL_Morph.sh
    ```
 
-### 5. Therapeutic Response and Decision-Making
+### 6. Therapeutic Response and Decision-Making
    
    `HANCOCK_Chemotherapy_Recurrence`
    
@@ -139,16 +148,7 @@ ImmunoBench covers six task categories. Users should prepare data and run the co
    bash train_scripts/subtype_HANCOCK_Chemotherapy_Recurrence_IHC.sh
    ```
 
-### 6. Tissue and Tumor Microenvironment Classification
-   
-   `HNSCC_mIF_mIHC_CD8`
-   
-   **Example**:
-   ```bash
-   bash train_scripts/patch_HNSCC_mIF_mIHC_CD8.sh
-   ```
-
-For tasks 1 to 5, results are written under `results/experiments/train/splits712/`. For task 6, results are written under `results/experiments/train/patch/`. Logs are written under `logs/`.
+Most tasks write results under `results/experiments/train/splits712/`. The patch-level tissue and tumor microenvironment classification task writes results under `results/experiments/train/patch/`. Logs are written under `logs/`.
 
 ## Training Notes
 
