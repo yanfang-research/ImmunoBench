@@ -1,20 +1,18 @@
 # ImmunoBench: A Benchmark for Immunohistochemistry-based Prediction Tasks
 
-\[ [Paper (Coming Soon)]() | [Features on HuggingFace](https://huggingface.co/datasets/AI4Pathology/ImmunoBench-image-features) \]
-
-Official repository for **ImmunoBench**, a benchmark for evaluating pathology foundation models on immunohistochemistry (IHC)-based clinical prediction tasks.
+\[ [Paper (Coming Soon)]() | [Features on HuggingFace](https://huggingface.co/datasets/AI4Pathology/ImmunoBench-image-features) | [Leaderboard](https://yanfang-research.github.io/ImmunoBench/) \]
 
 <p align="center">
-  <img src="figures/Fig1.jpg" alt="ImmunoBench Overview" width="100%">
+  <img src="figures/Fig1a.png" alt="ImmunoBench Overview" width="100%">
 </p>
 
 ## Overview
 
-ImmunoBench provides:
-- Pre-extracted features from pathology foundation models
-- Multiple clinical prediction tasks, including survival and recurrence
-- Three input settings: `HE_Only`, `IHCs_Only`, and `Multi_Stain`
-- Training scripts and CSV files for direct benchmarking
+Immunohistochemistry (IHC) provides spatially resolved protein-expression information that links tissue morphology to molecular phenotype and supports tumour classification, biomarker assessment, prognostic stratification, and therapeutic decision-making. While pathology foundation models (PFMs) have shown strong transferability in hematoxylin and eosin (H&E)-based tasks, their ability to encode IHC-derived molecular and functional signals remains insufficiently evaluated. ImmunoBench is a large-scale, multi-institutional benchmark for evaluating PFMs in IHC-centered pathology workflows, integrating data from `13,657` patients, `26,058` whole-slide images (WSIs), `9,682,431` TMA-derived IHC images, and `464,294` annotated patches across `13` institutions, `27` organs, `43` clinical stains, and `14,708` gene-encoded proteins.
+
+ImmunoBench evaluates `14` representative PFMs across `71` clinically relevant endpoints, including IHC staining assessment, biomarker prediction, disease diagnosis and grading, tissue microenvironment classification, prognosis, and treatment response prediction, under IHC-only, H&E-only, multi-stain, and external validation settings. PFMs perform strongly on local morphology and spatially coherent staining signals, but remain less reliable on sparse, heterogeneous, and outcome-related endpoints such as vascular markers, PD-L1, prognosis, and treatment response. Patch-level models generally outperform WSI-level models in local IHC recognition tasks, whereas neither paradigm achieves robust performance on prognosis or treatment-response endpoints.
+
+Beyond model comparison, ImmunoBench provides curated dataset subsets, standardized evaluation protocols, pre-extracted PFM embeddings, and a dynamic leaderboard, enabling reproducible evaluation of future models in consistent IHC-centered settings.
 
 ## Installation
 
@@ -30,6 +28,8 @@ pip install -r requirements.txt
 
 Features are hosted on HuggingFace:
 - Dataset: [AI4Pathology/ImmunoBench-image-features](https://huggingface.co/datasets/AI4Pathology/ImmunoBench-image-features)
+
+If you do not want to use the pre-extracted features provided here, you can extract features from whole-slide images yourself with [CLAM](https://github.com/mahmoodlab/CLAM).
 
 Top-level folders are organized by task:
 
@@ -49,7 +49,7 @@ ImmunoBench-image-features/
 Each task contains three modality folders:
 - `HE_Only`: H&E features only
 - `IHCs_Only`: IHC features only
-- `Multi_Stain`: combined H&E and IHC features
+- `Multi_Stain`: concatenated H&E and IHC features
 
 Within each modality, features are grouped by backbone, for example `virchow`, `virchow2`, `gigapath_wsi`, `uni`, and `conch`.
 
@@ -71,6 +71,10 @@ Examples:
 ## Task Categories
 
 ImmunoBench covers six task categories. Users should prepare data and run the corresponding scripts step by step.
+
+<p align="center">
+  <img src="figures/Fig1c.png" alt="ImmunoBench Task Categories" width="100%">
+</p>
 
 ### 1. Immunohistochemical Staining Assessment
    
@@ -159,8 +163,81 @@ backbones="chief conch conch_v1_5 ctranspath gigapath GPFM phikon uni h_optimus_
 CUDA_VISIBLE_DEVICES=1 bash survival_HANCOCK_Chemotherapy_OS.sh
 ```
 
+## Leaderboard
+
+🏆 [ImmunoBench Leaderboard](https://yanfang-research.github.io/ImmunoBench/)
+
+The public leaderboard provides an interactive benchmark snapshot, full task explorer, and overall model rankings.
+
+<p align="center">
+  <img src="figures/Fig1d.png" alt="ImmunoBench Leaderboard Snapshot" width="100%">
+</p>
+
+- Foundation models: `14`
+- Clinical cohorts: `41`
+- Whole-slide images: `9.7M+`
+- Patients: `17k+`
+
+### Classification Snapshot
+
+Macro-averaged AUC ranking from the public leaderboard:
+
+| Rank | Foundation model | Macro-averaged AUC |
+| --- | --- | --- |
+| 1 | `Virchow2` | `0.953` |
+| 2 | `GPFM` | `0.952` |
+| 3 | `UNI` | `0.950` |
+| 4 | `Prov-GigaPath` | `0.948` |
+| 5 | `H-optimus-0` | `0.945` |
+| 6 | `Conch v1.5` | `0.945` |
+| 7 | `Conch` | `0.942` |
+| 8 | `Phikon` | `0.940` |
+| 9 | `CTransPath` | `0.939` |
+| 10 | `Virchow` | `0.935` |
+| 11 | `TITAN (WSI)` | `0.896` |
+| 12 | `MADELENE (WSI)` | `0.879` |
+| 13 | `CHIEF (WSI)` | `0.856` |
+| 14 | `Prov-GigaPath (WSI)` | `0.794` |
+
+### Prognosis Snapshot
+
+Macro-averaged C-index ranking from the public leaderboard:
+
+| Rank | Foundation model | Macro-averaged C-index |
+| --- | --- | --- |
+| 1 | `Virchow2` | `0.591` |
+| 2 | `TITAN (WSI)` | `0.584` |
+| 3 | `Virchow` | `0.579` |
+| 4 | `CTransPath` | `0.573` |
+| 5 | `GPFM` | `0.572` |
+| 6 | `H-optimus-0` | `0.569` |
+| 7 | `Prov-GigaPath` | `0.568` |
+| 8 | `MADELENE (WSI)` | `0.568` |
+| 9 | `CHIEF (WSI)` | `0.567` |
+| 10 | `Phikon` | `0.563` |
+| 11 | `Conch` | `0.562` |
+| 12 | `Conch v1.5` | `0.555` |
+| 13 | `UNI` | `0.551` |
+| 14 | `Prov-GigaPath (WSI)` | `0.541` |
+
+
 ## Available Backbones
 
-ImmunoBench includes features from the following pathology foundation models:
-- `chief` `chief_wsi` `conch` `conch_v1_5` `ctranspath` `gigapath` `gigapath_wsi` `GPFM` `h_optimus_0` `madeleine_wsi` `phikon` `titan_wsi` `uni` `virchow` `virchow2`
+<p align="center">
+  <img src="figures/Fig1b.png" alt="ImmunoBench Foundation Models" width="100%">
+</p>
 
+ImmunoBench includes features from the following pathology foundation models:
+- CHIEF: [https://github.com/hms-dbmi/CHIEF](https://github.com/hms-dbmi/CHIEF)
+- CONCH: [https://huggingface.co/MahmoodLab/CONCH](https://huggingface.co/MahmoodLab/CONCH)
+- CONCH v1.5: [https://huggingface.co/MahmoodLab/TITAN](https://huggingface.co/MahmoodLab/TITAN)
+- CTransPath: [https://github.com/Xiyue-Wang/TransPath](https://github.com/Xiyue-Wang/TransPath)
+- Prov-GigaPath: [https://huggingface.co/prov-gigapath/prov-gigapath](https://huggingface.co/prov-gigapath/prov-gigapath)
+- GPFM: [https://huggingface.co/majiabo/GPFM](https://huggingface.co/majiabo/GPFM)
+- H-Optimus-0: [https://huggingface.co/bioptimus/H-optimus-0](https://huggingface.co/bioptimus/H-optimus-0)
+- MADELEINE: [https://huggingface.co/MahmoodLab/madeleine](https://huggingface.co/MahmoodLab/madeleine)
+- Phikon: [https://huggingface.co/owkin/phikon](https://huggingface.co/owkin/phikon)
+- TITAN: [https://huggingface.co/MahmoodLab/TITAN](https://huggingface.co/MahmoodLab/TITAN)
+- UNI: [https://huggingface.co/MahmoodLab/UNI](https://huggingface.co/MahmoodLab/UNI)
+- Virchow: [https://huggingface.co/paige-ai/Virchow](https://huggingface.co/paige-ai/Virchow)
+- Virchow2: [https://huggingface.co/paige-ai/Virchow2](https://huggingface.co/paige-ai/Virchow2)
