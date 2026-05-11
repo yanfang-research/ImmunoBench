@@ -184,20 +184,20 @@ Macro-averaged AUC ranking from the public leaderboard:
 
 | Rank | Foundation model | Macro-averaged AUC |
 | --- | --- | --- |
-| 1 | `Virchow2` | `0.953` |
-| 2 | `GPFM` | `0.952` |
-| 3 | `UNI` | `0.950` |
-| 4 | `Prov-GigaPath` | `0.948` |
-| 5 | `H-optimus-0` | `0.945` |
-| 6 | `Conch v1.5` | `0.945` |
-| 7 | `Conch` | `0.942` |
-| 8 | `Phikon` | `0.940` |
-| 9 | `CTransPath` | `0.939` |
-| 10 | `Virchow` | `0.935` |
-| 11 | `TITAN (WSI)` | `0.896` |
-| 12 | `MADELENE (WSI)` | `0.879` |
-| 13 | `CHIEF (WSI)` | `0.856` |
-| 14 | `Prov-GigaPath (WSI)` | `0.794` |
+| 1 | `Virchow2` | `0.876` |
+| 2 | `CONCH v1.5` | `0.869` |
+| 3 | `GPFM` | `0.869` |
+| 4 | `CONCH` | `0.869` |
+| 5 | `UNI` | `0.868` |
+| 6 | `GigaPath` | `0.866` |
+| 7 | `Phikon` | `0.862` |
+| 8 | `H-optimus-0` | `0.857` |
+| 9 | `CTransPath` | `0.854` |
+| 10 | `Virchow` | `0.851` |
+| 11 | `MADELEINE` | `0.820` |
+| 12 | `TITAN` | `0.819` |
+| 13 | `CHIEF` | `0.800` |
+| 14 | `Prov-GigaPath` | `0.745` |
 
 ### Prognosis Snapshot
 
@@ -205,20 +205,20 @@ Macro-averaged C-index ranking from the public leaderboard:
 
 | Rank | Foundation model | Macro-averaged C-index |
 | --- | --- | --- |
-| 1 | `Virchow2` | `0.591` |
-| 2 | `TITAN (WSI)` | `0.584` |
-| 3 | `Virchow` | `0.579` |
-| 4 | `CTransPath` | `0.573` |
-| 5 | `GPFM` | `0.572` |
-| 6 | `H-optimus-0` | `0.569` |
-| 7 | `Prov-GigaPath` | `0.568` |
-| 8 | `MADELENE (WSI)` | `0.568` |
-| 9 | `CHIEF (WSI)` | `0.567` |
-| 10 | `Phikon` | `0.563` |
-| 11 | `Conch` | `0.562` |
-| 12 | `Conch v1.5` | `0.555` |
-| 13 | `UNI` | `0.551` |
-| 14 | `Prov-GigaPath (WSI)` | `0.541` |
+| 1 | `GigaPath` | `0.545` |
+| 2 | `Phikon` | `0.542` |
+| 3 | `UNI` | `0.534` |
+| 4 | `GPFM` | `0.531` |
+| 5 | `TITAN` | `0.530` |
+| 6 | `Virchow2` | `0.528` |
+| 7 | `MADELEINE` | `0.526` |
+| 8 | `CHIEF` | `0.525` |
+| 9 | `H-optimus-0` | `0.517` |
+| 10 | `Prov-GigaPath` | `0.513` |
+| 11 | `CONCH` | `0.509` |
+| 12 | `CTransPath` | `0.507` |
+| 13 | `CONCH v1.5` | `0.506` |
+| 14 | `Virchow` | `0.505` |
 
 
 ## Available Backbones
