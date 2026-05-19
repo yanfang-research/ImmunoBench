@@ -1,6 +1,6 @@
 # ImmunoBench: A Large-Scale Multi-Institutional Benchmark for IHC-Centered Pathology Foundation Models
 
-\[ [Paper (Coming Soon)]() | [Features on HuggingFace](https://huggingface.co/datasets/AI4Pathology/ImmunoBench-image-features) | [Leaderboard](https://yanfang-research.github.io/ImmunoBench/) \]
+\[ [Paper (Coming Soon)]() | [Features on HuggingFace](https://huggingface.co/datasets/AI4Pathology/ImmunoBench-image-features) | [Leaderboard](https://yanfang-research.github.io/ImmunoBench-Web/) \]
 
 <p align="center">
   <img src="figures/Fig1a.png" alt="ImmunoBench Overview" width="100%">
