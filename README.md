@@ -1,4 +1,4 @@
-# ImmunoBench: A Large-Scale Multi-Institutional Benchmark for IHC-Centered Pathology Foundation Models
+# ImmunoBench maps the performance landscape of pathology foundation models in immunohistochemistry-centered precision oncology
 
 \[ [Paper (Coming Soon)]() | [Features on HuggingFace](https://huggingface.co/datasets/AI4Pathology/ImmunoBench-image-features) | [Leaderboard](https://yanfang-research.github.io/ImmunoBench-Web/) \]
 
